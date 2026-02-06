@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'screens/game_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -27,12 +28,11 @@ class MyApp extends StatelessWidget {
         '/lobby': (context) => const EventLobbyScreenStub(),
 
         // Schermata di gioco (Chat + Stats)
-        '/game': (context) => const GameInterfaceScreenStub(),
+        '/game': (context) => const GameScreen(),
       },
     );
   }
 }
-
 // Widget temporanei
 class LoginScreenStub extends StatelessWidget {
   const LoginScreenStub({super.key});
@@ -60,7 +60,19 @@ class HomeScreenStub extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Scaffold(
     appBar: AppBar(title: Text("Homepage")),
-    body: Center(child: Text("Homepage")),
+    body: Center(child: 
+      Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text("Homepage"),
+          SizedBox(height: 20),
+          ElevatedButton(
+            onPressed: () => Navigator.pushNamed(context, '/game'),
+            child: Text("Vai al Gioco"),
+          ),
+        ],
+      ),
+    ),
   );
 }
 
@@ -79,14 +91,5 @@ class EventLobbyScreenStub extends StatelessWidget {
   Widget build(BuildContext context) => Scaffold(
     appBar: AppBar(title: Text("Lobby")),
     body: Center(child: Text("Lobby")),
-  );
-}
-
-class GameInterfaceScreenStub extends StatelessWidget {
-  const GameInterfaceScreenStub({super.key});
-  @override
-  Widget build(BuildContext context) => Scaffold(
-    appBar: AppBar(title: Text("Gioco")),
-    body: Center(child: Text("Gioco")),
   );
 }
